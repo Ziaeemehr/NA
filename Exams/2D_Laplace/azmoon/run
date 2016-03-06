@@ -1,0 +1,3 @@
+ifort cg_2d.f90
+./a.out
+echo 'splot "result.txt" nonuniform matrix w l lt 8 title "CG "' | gnuplot --persist

@@ -1,0 +1,6 @@
+set terminal png
+set output "plot-1.png"
+set title "2-D Laplace Conjugate Gredient"
+set xlabel "y"
+set ylabel "x"
+splot "result.txt" nonuniform matrix w l lt 10 title "CG "

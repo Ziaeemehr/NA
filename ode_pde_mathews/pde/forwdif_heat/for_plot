@@ -1,0 +1,14 @@
+#! /usr/bin/gnuplot
+set term postscript eps monochrome dashed 'Times-Roman' 28
+set output 'forwdiff.ps'
+set xlabel "x"
+set ylabel "t"
+set zlabel "u"
+set view 20,210
+set border 4095 lw 2
+set hidden3d
+set xyplane 0
+set autoscale fix
+set nokey
+set notics
+splot "for_result.txt" nonuniform matrix lt -1 lw 2 with lines

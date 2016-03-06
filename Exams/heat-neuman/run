@@ -1,0 +1,4 @@
+ifort heat_neuman.f90
+./a.out
+gnuplot --persist plot
+#evince rod.ps &

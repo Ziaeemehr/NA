@@ -1,0 +1,5 @@
+set terminal postscript eps enhanced
+set output "plot-1.eps"
+set xlabel 'x'
+set ylabel 'm'
+plot "x.txt" u 1:2 w l lt 6  lw 3 title 'M'

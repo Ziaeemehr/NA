@@ -1,0 +1,8 @@
+#! /usr/bin/gnuplot
+set terminal pngcairo enhanced font "arial,10" fontscale 1.0 size 800, 600 
+set output 'h.png'
+set xlabel 'time'
+set ylabel 'avr_h'
+#set logscale xy
+#set xrange[0.005:0.2]
+plot "ht.txt" u 1:2 w p pt 7 ps 0.5 title "h average"

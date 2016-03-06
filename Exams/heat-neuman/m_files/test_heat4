@@ -1,0 +1,121 @@
+>> N = 2^4;
+>> [u,err1,x,t,kk,amp] = heat4(0,.01,20,N);
+r =
+    0.0032
+r =
+    0.9755
+
+>> for i=1:21, plot(kk,amp(:,i)); axis([0,N/2-1,-17,1]); figure(1); hold on; end; hold off
+>> max(max(abs(err1)))
+ans =
+  2.4759e-006
+
+>> [u,err2,x,t,kk,amp] = heat4(0,.01,40,N);
+r =
+    0.0016
+r =
+    0.9878
+
+>> max(max(abs(err2)))
+ans =
+  1.2378e-006
+
+>> [u,err3,x,t,kk,amp] = heat4(0,.01,80,N);
+r =
+  8.1057e-004
+r =
+    0.9939
+
+>> max(max(abs(err3)))
+ans =
+  6.1883e-007
+
+Now we check the ratios of the errors at all 16 points at the final
+time t=.01. 
+>> (err1(:,21)./err2(:,41))'
+ans =
+  Columns 1 through 7 
+    2.0003    2.0003    2.0003    2.0003    0.7450    2.0003    2.0003
+  Columns 8 through 14 
+    2.0003    2.0003    2.0003    2.0003    2.0003    0.7906    2.0003
+  Columns 15 through 16 
+    2.0003    2.0003
+
+>> (err2(:,41)./err3(:,81))'
+ans =
+  Columns 1 through 7 
+    2.0002    2.0002    2.0002    2.0002    0.3511    2.0002    2.0002
+  Columns 8 through 14 
+    2.0002    2.0002    2.0002    2.0002    2.0002    0.3963    2.0002
+  Columns 15 through 16 
+    2.0002    2.0002
+
+The ratios are generally close to 2, which is what we expect since the
+time-stepping is O(dt).
+
+Note: the deviations away from ratios close to 2 occur where the
+errors are at the level of round-off error.  This is why we are
+confident that the ratios are close to 2 when the errors aren't at
+round-off error.  (I.e.  are still relevant.)
+>> err1(:,21)'
+ans =
+  Columns 1 through 6 
+ -2.4759e-006 -2.2875e-006 -1.7508e-006 -9.4750e-007  1.6768e-016  9.4750e-007
+  Columns 7 through 12 
+  1.7508e-006  2.2875e-006  2.4759e-006  2.2875e-006  1.7508e-006  9.4750e-007
+  Columns 13 through 16 
+ -2.1583e-016 -9.4750e-007 -1.7508e-006 -2.2875e-006  2.0264e-004
+
+Now let's make the explicit time-stepping go bad.
+>> [u,err,x,t,kk,amp] = heat4(0,.01,20,2^8);
+r =
+    0.8300
+r =
+   -7.0645
+
+this has magnitude greater than 1.  It will make the fourier modes
+grow, which we will see in the power spectrum, as well as in the
+solution and the error.  It will be easiest to see in the spectrum and
+hardest to see in the solution.
+
+>> clf; hold on
+>> for i=1:21, plot(kk,amp(:,i)); pause(1); figure(1); end
+>> for i=1:21, plot(x,err(:,i)); pause(1); figure(1); end
+>> for i=1:21, plot(x,u(:,i)); pause(1); figure(1); end
+
+>> [u,err1,x,t,kk,amp] = heat5(0,.01,20,N);
+r =
+  3.2423e-003
+>> max(max(abs(err1)))
+ans =
+  2.4743e-006
+Note: for the explicit time-stepping, the maximum error was 2.4759e-006.  
+The errors are on the same scale.
+>> [u,err2,x,t,kk,amp] = heat5(0,.01,40,N);
+r =
+  1.6211e-003
+>> [u,err3,x,t,kk,amp] = heat5(0,.01,80,N);
+r =
+  8.1057e-004
+
+Again, check that the ratios are around 2, as expected.  Since the
+time-stepping is O(dt).
+>> (err1(:,21)./err2(:,41))'
+ans =
+  Columns 1 through 6 
+  1.9997e+000  1.9997e+000  1.9997e+000  1.9997e+000  1.3713e-001  1.9997e+000
+  Columns 7 through 12 
+  1.9997e+000  1.9997e+000  1.9997e+000  1.9997e+000  1.9997e+000  1.9997e+000
+  Columns 13 through 16 
+  1.9915e-001  1.9997e+000  1.9997e+000  1.9997e+000
+>> (err2(:,41)./err3(:,81))'
+ans =
+  Columns 1 through 6 
+  1.9998e+000  1.9998e+000  1.9998e+000  1.9998e+000  6.1414e-001  1.9998e+000
+  Columns 7 through 12 
+  1.9998e+000  1.9998e+000  1.9998e+000  1.9998e+000  1.9998e+000  1.9998e+000
+  Columns 13 through 16 
+  6.3166e-001  1.9998e+000  1.9998e+000  1.9998e+000
+
+>> diary off
+

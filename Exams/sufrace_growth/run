@@ -1,0 +1,11 @@
+#ifort surface1D.f90 -mkl
+ifort cg_surface2.f90
+./a.out
+#gnuplot plotw
+#gnuplot ploth
+#display h.png & 
+#display w.png &
+echo 'plot "wt.txt" u 1:2 w l lt -7'| gnuplot -persist
+echo 'plot "ht.txt" u 1:2 w l lt -7'| gnuplot -persist
+
+

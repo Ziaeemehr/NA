@@ -1,0 +1,14 @@
+! Crank-Nicolson Method for the Heat Equation.
+! ! To approximate the solution of heat equation 
+!    Ut(x,t) = c * Uxx(x,t)
+! x over [0,a] , t over [0,b] 
+! U(x,0) = f(x), U(0,t) = c1 , U(a,t) = c2
+! n and m number of grid points over [0,a] and [0,b] 
+
+# Detail in Mathews Numerical Methods page : 533 Table 10.5
+crnich.f90       solve the heat equation with tridiag subroutine in each time steps
+crnich.m         The MATLAB code
+crnich_mkl_gtsv  solve the heat equation with dtesv subroutine(from mkl) in each time steps
+crnich_mkl       solve the heat equation with dgesv subroutine(from mkl) in each time steps
+
+?gtsv :Computes the solution to the system of linear equations with a tridiagonal coefficient matrix A and multiple right-hand sides.

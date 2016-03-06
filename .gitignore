@@ -1,0 +1,5 @@
+a.out
+# ignore all .pdf files in the doc/ directory
+# doc/**/*.pdf
+*~
+/e/*

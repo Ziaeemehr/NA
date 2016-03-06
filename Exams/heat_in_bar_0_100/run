@@ -1,0 +1,4 @@
+ifort heat_cg.f90
+./a.out
+echo 'splot "cg.txt" nonuniform matrix w l lt 7 title""' | gnuplot --persist
+

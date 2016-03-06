@@ -1,0 +1,13 @@
+#! /usr/bin/gnuplot
+set terminal pngcairo enhanced font "arial,10" fontscale 1.0 size 800, 600 
+set output 'w.png'
+set key top left box 3
+set xlabel 'Time'
+set ylabel 'Roughness'
+#set xrange [1e-5:0.1]
+#set yrange [1e-3:0.1]
+set logscale xy
+f(x) = a*x ** b
+fit [1e-4:.001] f(x) "wt.txt" u 1:2 via a, b
+plot "wt.txt" u 1:2 w p pt 7 ps 0.5 title "Data", f(x) w l lc 1 lt -1 title "fit"
+#plot "wt.txt" u 1:2 w p pt 7 ps 0.5 title "Data"

@@ -1,0 +1,14 @@
+#! /usr/bin/gnuplot
+set term postscript eps monochrome dashed 'Times-Roman' 28
+set output 'heat_rod.ps'
+set xlabel "x"
+set ylabel "t"
+set zlabel "T(x,t)"
+#set view 20,210
+set border 4095 lw 2
+set hidden3d
+set xyplane 0
+set autoscale fix
+set nokey
+set notics
+splot "T.txt" nonuniform matrix lt -1 lw 2 with lines

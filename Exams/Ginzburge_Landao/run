@@ -1,0 +1,7 @@
+#ifort landao.f90 -mkl
+ifort cg_landao.f90
+./a.out
+echo 'splot "xt.txt" nonuniform matrix w l lt 7' | gnuplot --persist
+echo 'plot "x.txt" u 1:2 w l lt 7' | gnuplot --persist
+#gnuplot plot
+#evince plot-1.eps

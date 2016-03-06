@@ -1,0 +1,8 @@
+ifort cg.f90
+./a.out 
+echo 'splot "r.txt" nonuniform matrix w l lt 7 title "CG laplace"' | gnuplot --persist
+
+ifort 2DlaplaceCG.f90 
+./a.out
+echo 'splot "result.txt" nonuniform matrix w l lt 7' | gnuplot --persist
+

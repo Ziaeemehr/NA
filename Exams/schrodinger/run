@@ -1,0 +1,7 @@
+ifort -C -g -traceback schro.f90 -mkl
+./a.out
+echo 'splot "realpsi.txt" nonuniform matrix w l lt 8 title "real Psi(x)"' | gnuplot --persist
+echo 'splot "imgpsi.txt"  nonuniform matrix w l lt 8 title "img Psi(x)"' | gnuplot --persist
+echo 'splot "prob.txt"    nonuniform matrix w l lt 8 title "probability(x)"' | gnuplot --persist
+
+
